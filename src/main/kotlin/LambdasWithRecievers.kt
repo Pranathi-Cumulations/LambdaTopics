@@ -1,12 +1,12 @@
 class HTML {
-    fun body(str : String) { println("I am in the body of HTML") }
+    fun body() { println("I am in the body of HTML") }
 }
 
-fun html(init: HTML.(String) -> Unit): HTML {
-    val html = HTML()  // create the receiver object
-    html.init("hello")        // pass the receiver object to the lambda
-    return html
+fun HTML.html(init: HTML.() -> Unit): HTML {
+    this.init()        // pass the receiver object to the lambda
+    return this
 }
 fun main() {
-    html { body("hi") }
+    var htmlObject = HTML()
+    htmlObject.html { body()}
 }
